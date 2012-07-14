@@ -18,13 +18,17 @@
 
 (require 'cscope-settings)
 
-(require 'cedet-settings)
+;(require 'cedet-settings)
 
-(require 'ecb-settings)
+;(require 'ecb-settings)
 
 (require 'auto-complete-settings)
 
 (require 'lua-settings)
+
+(global-set-key (kbd "C-SPC") nil)
+
+(add-to-list 'auto-mode-alist '("[.]md$" . markdown-mode))
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
