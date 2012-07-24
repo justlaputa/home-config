@@ -4,7 +4,7 @@
   
 # How to clone
 
-  I need to place these files under my home directory, I don't use _git clone_:
+  I need to place these files under my home directory, so I don't use _git clone_:
   
     cd ~
     git init
