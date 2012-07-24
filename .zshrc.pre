@@ -1,5 +1,5 @@
 M2_HOME=/usr/share/maven
-JAVA_HOME=/usr/java/latest
+JAVA_HOME=/usr/java/default
 ANDROID_SDK=$HOME/dev/sdk
 ANDROID_NDK=$HOME/dev/ndk
 PATH=/sbin:/usr/sbin:$PATH:~/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$ANDROID_NDK
