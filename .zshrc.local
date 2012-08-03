@@ -210,6 +210,8 @@ alias grhh='git reset HEAD --hard'
 alias gr='git rebase'
 alias gf='git fetch'
 alias gfo='git fetch origin'
+alias gau='git add -u'
+
 # Git and svn mix
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
 compdef git-svn-dcommit-push=git
