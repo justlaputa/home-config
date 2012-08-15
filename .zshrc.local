@@ -213,6 +213,7 @@ alias gfo='git fetch origin'
 alias gau='git add -u'
 alias gdf='git diff'
 alias glp='git log -p'
+alias glga='git log --graph --all --decorate --pretty=oneline'
 
 # Git and svn mix
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
