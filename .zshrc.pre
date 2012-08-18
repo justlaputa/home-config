@@ -1,3 +1,7 @@
 M2_HOME=/usr/share/maven
 JAVA_HOME=/usr/java/default
-export M2_HOME JAVA_HOME
+
+[[ -a $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+PATH=$PATH:$HOME/.rvm/bin
+
+export PATH M2_HOME JAVA_HOME
