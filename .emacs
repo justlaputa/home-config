@@ -26,6 +26,8 @@
 
 (require 'lua-settings)
 
+(require 'yaml-settings)
+
 ;(require 'webdevel-settings)
 
 ;(global-set-key (kbd "C-SPC") nil)
