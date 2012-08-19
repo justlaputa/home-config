@@ -1,4 +1,6 @@
 M2_HOME=/usr/share/maven
 JAVA_HOME=/usr/java/default
 
+PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+
 export PATH M2_HOME JAVA_HOME
