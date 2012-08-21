@@ -24,6 +24,8 @@
 
 (require 'auto-complete-settings)
 
+(require 'gtd-settings)
+
 (require 'lua-settings)
 
 (require 'yaml-settings)
