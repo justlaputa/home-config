@@ -4,3 +4,5 @@ JAVA_HOME=/usr/java/default
 PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 
 export PATH M2_HOME JAVA_HOME
+
+[[ -e $HOME/src/nvm/nvm.sh ]] && source $HOME/src/nvm/nvm.sh
