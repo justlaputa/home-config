@@ -5,7 +5,7 @@
 ;;========================================
 ;; org-mode
 
-(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "DONE"))
+(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "|" "DONE" "CANCELED"))
 
 (setq org-enforce-todo-dependencies 1)
 
