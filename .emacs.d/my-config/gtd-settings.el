@@ -21,10 +21,4 @@
                          "~/Dropbox/Docs/orgs/work.org"
                          "~/Dropbox/Docs/orgs/notes.org"))
 
-
-;;========================================
-;; remeber
-
-(require 'remember-autoloads)
-
 (provide 'gtd-settings)
