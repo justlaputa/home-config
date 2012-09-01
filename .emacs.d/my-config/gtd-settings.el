@@ -4,6 +4,7 @@
 
 ;;========================================
 ;; org-mode
+(setq org-directory "~/Dropbox/Docs/orgs/")
 
 (setq org-todo-keywords '("TODO" "STARTED" "WAITING" "|" "DONE" "CANCELED"))
 
@@ -17,7 +18,9 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (setq org-agenda-files '("~/Dropbox/Docs/orgs/agenda.org"
-                         "~/Dropbox/Docs/orgs/work.org"))
+                         "~/Dropbox/Docs/orgs/work.org"
+                         "~/Dropbox/Docs/orgs/notes.org"))
+
 
 ;;========================================
 ;; remeber

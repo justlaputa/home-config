@@ -33,7 +33,7 @@
 
 ;; display column and line number
 (column-number-mode 1)
-(global-linum-mode)
+;(global-linum-mode)
 
 ;; disable backup files & auto-save
 (setq make-backup-files nil)
