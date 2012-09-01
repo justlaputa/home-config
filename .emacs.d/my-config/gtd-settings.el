@@ -21,4 +21,8 @@
                          "~/Dropbox/Docs/orgs/work.org"
                          "~/Dropbox/Docs/orgs/notes.org"))
 
+;; org-capture settings
+(setq org-default-notes-file (concat org-directory "notes.org"))
+(global-set-key (kbd "C-c c") 'org-capture)
+
 (provide 'gtd-settings)
