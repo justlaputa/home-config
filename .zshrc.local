@@ -207,6 +207,8 @@ compdef _git gm=git-merge
 alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 
+alias gsu='git status -u'
+alias gsn='git status -uno'
 alias gr='git rebase'
 alias gf='git fetch'
 alias gfo='git fetch origin'
