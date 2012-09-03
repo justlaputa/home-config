@@ -29,6 +29,8 @@ local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
 
+local terminal = "gnome-terminal"
+
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
 
@@ -46,8 +48,8 @@ layouts = {
 
 -- {{{ Tags
 tags = {
-  names  = { "term", "emacs", "web", "mail", "im", 6, 7, "rss", "media" },
-  layout = { layouts[2], layouts[1], layouts[1], layouts[4], layouts[1],
+  names  = { "term", "emacs", "web", "dev", "misc", 6, 7, "rss", "media" },
+  layout = { layouts[1], layouts[1], layouts[6], layouts[4], layouts[6],
              layouts[6], layouts[6], layouts[5], layouts[6]
 }}
 
@@ -152,7 +154,7 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. beautiful.fg_netup_widget ..'">${eth0 up_kb}</span>', 3)
 -- }}}
 
--- {{{ Mail subject
+--[[ {{{ Mail subject
 mailicon = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
 -- Initialize widget
@@ -163,7 +165,7 @@ vicious.register(mailwidget, vicious.widgets.mbox, "$1", 181, {home .. "/mail/In
 mailwidget:buttons(awful.util.table.join(
   awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine.exp") end)
 ))
--- }}}
+--]]
 
 -- {{{ Org-mode agenda
 orgicon = widget({ type = "imagebox" })
@@ -211,7 +213,7 @@ vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "PCM")
 vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "PCM")
 -- Register buttons
 volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () exec("kmix") end),
+--   awful.button({ }, 1, function () exec("kmix") end),
    awful.button({ }, 4, function () exec("amixer -q set PCM 2dB+", false) end),
    awful.button({ }, 5, function () exec("amixer -q set PCM 2dB-", false) end)
 )) -- Register assigned buttons
@@ -280,7 +282,7 @@ for s = 1, scount do
         separator, datewidget, dateicon,
         separator, volwidget,  volbar.widget, volicon,
         separator, orgwidget,  orgicon,
-        separator, mailwidget, mailicon,
+--        separator, mailwidget, mailicon,
         separator, upicon,     netwidget, dnicon,
         separator, fs.s.widget, fs.h.widget, fs.r.widget, fs.b.widget, fsicon,
         separator, membar.widget, memicon,
@@ -313,20 +315,20 @@ clientbuttons = awful.util.table.join(
 -- {{{ Global keys
 globalkeys = awful.util.table.join(
     -- {{{ Applications
-    awful.key({ modkey }, "e", function () exec("emacsclient -n -c") end),
-    awful.key({ modkey }, "r", function () exec("rox", false) end),
+    awful.key({ modkey }, "e", function () exec("emacs") end),
+--    awful.key({ modkey }, "r", function () exec("rox", false) end),
     awful.key({ modkey }, "w", function () exec("firefox") end),
-    awful.key({ altkey }, "F1",  function () exec("urxvt") end),
+    awful.key({ modkey }, "Return",  function () exec(terminal) end),
     awful.key({ altkey }, "#49", function () scratch.drop("urxvt", "bottom", nil, nil, 0.30) end),
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine.exp") end),
-    awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
+--    awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-remember-frame)'") end),
     awful.key({ altkey }, "#51", function () if boosk then osk(nil, mouse.screen)
         else boosk, osk = pcall(require, "osk") end
     end),
     -- }}}
 
-    -- {{{ Multimedia keys
+    --[[  {{{ Multimedia keys
     awful.key({}, "#235", function () exec("kscreenlocker --forcelock") end),
     awful.key({}, "#121", function () exec("pvol.py -m") end),
     awful.key({}, "#122", function () exec("pvol.py -p -c -2") end),
@@ -336,10 +338,10 @@ globalkeys = awful.util.table.join(
     awful.key({}, "#165", function () exec("sudo /usr/sbin/pm-hibernate") end),
     awful.key({}, "#150", function () exec("sudo /usr/sbin/pm-suspend")   end),
     awful.key({}, "#163", function () exec("pypres.py") end),
-    -- }}}
+    -- }}}]]
 
     -- {{{ Prompt menus
-    awful.key({ altkey }, "F2", function ()
+    awful.key({ modkey }, "r", function ()
         awful.prompt.run({ prompt = "Run: " }, promptbox[mouse.screen].widget,
             function (...) promptbox[mouse.screen].text = exec(unpack(arg), false) end,
             awful.completion.shell, awful.util.getdir("cache") .. "/history")
@@ -374,8 +376,8 @@ globalkeys = awful.util.table.join(
     -- }}}
 
     -- {{{ Tag browsing
-    awful.key({ altkey }, "n",   awful.tag.viewnext),
-    awful.key({ altkey }, "p",   awful.tag.viewprev),
+    awful.key({ modkey }, "n",   awful.tag.viewnext),
+    awful.key({ modkey }, "p",   awful.tag.viewprev),
     awful.key({ altkey }, "Tab", awful.tag.history.restore),
     -- }}}
 
@@ -389,9 +391,9 @@ globalkeys = awful.util.table.join(
     -- }}}
 
     -- {{{ Focus controls
-    awful.key({ modkey }, "p", function () awful.screen.focus_relative(1) end),
-    awful.key({ modkey }, "s", function () scratch.pad.toggle() end),
-    awful.key({ modkey }, "u", awful.client.urgent.jumpto),
+--    awful.key({ modkey }, "p", function () awful.screen.focus_relative(1) end),
+--    awful.key({ modkey }, "s", function () scratch.pad.toggle() end),
+--    awful.key({ modkey }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey }, "j", function ()
         awful.client.focus.byidx(1)
         if client.focus then client.focus:raise() end
@@ -515,12 +517,13 @@ awful.rules.rules = {
 --
 -- {{{ Manage signal handler
 client.add_signal("manage", function (c, startup)
-    -- Add titlebar to floaters, but remove those from rule callback
+    --[[ Add titlebar to floaters, but remove those from rule callback
     if awful.client.floating.get(c)
     or awful.layout.get(c.screen) == awful.layout.suit.floating then
         if   c.titlebar then awful.titlebar.remove(c)
         else awful.titlebar.add(c, {modkey = modkey}) end
     end
+    --]]
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function (c)
