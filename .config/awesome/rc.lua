@@ -30,6 +30,10 @@ local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
 
 local terminal = "gnome-terminal"
+local poweroff = "sudo poweroff"
+local restart = "sudo restart"
+local eclipse = home .. "/dev/eclipse/eclipse"
+local chrome = "/usr/bin/google-chrome"
 
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
@@ -316,16 +320,20 @@ clientbuttons = awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- {{{ Applications
     awful.key({ modkey }, "e", function () exec("emacs") end),
+    awful.key({ modkey }, "s", function () exec(eclipse) end),
 --    awful.key({ modkey }, "r", function () exec("rox", false) end),
     awful.key({ modkey }, "w", function () exec("firefox") end),
     awful.key({ modkey }, "Return",  function () exec(terminal) end),
     awful.key({ altkey }, "#49", function () scratch.drop("urxvt", "bottom", nil, nil, 0.30) end),
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine.exp") end),
 --    awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
+    awful.key({ modkey }, "g", function () exec(chrome) end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-remember-frame)'") end),
     awful.key({ altkey }, "#51", function () if boosk then osk(nil, mouse.screen)
         else boosk, osk = pcall(require, "osk") end
     end),
+    awful.key({ modkey, "Shift"}, "p", function () exec(poweroff) end),
+    awful.key({ modkey, "Shift"}, "r", function () exec(restart) end),
     -- }}}
 
     --[[  {{{ Multimedia keys
