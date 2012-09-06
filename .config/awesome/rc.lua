@@ -25,6 +25,7 @@ local altkey = "Mod1"
 local modkey = "Mod4"
 
 local home   = os.getenv("HOME")
+local org_home = home .. "/Dropbox/Docs/orgs"
 local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
@@ -178,8 +179,8 @@ orgicon.image = image(beautiful.widget_org)
 orgwidget = widget({ type = "textbox" })
 -- Configure widget
 local orgmode = {
-  files = { home.."/.org/computers.org",
-    home.."/.org/index.org", home.."/.org/personal.org",
+  files = { org_home.."/tasks.org",
+    org_home.."/work.org", org_home.."/notes.org",
   },
   color = {
     past   = '<span color="'..beautiful.fg_urgent..'">',
@@ -193,8 +194,8 @@ vicious.register(orgwidget, vicious.widgets.org,
   orgmode.files
 ) -- Register buttons
 orgwidget:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () exec("emacsclient --eval '(org-agenda-list)'") end),
-  awful.button({ }, 3, function () exec("emacsclient --eval '(make-remember-frame)'") end)
+  awful.button({ }, 1, function () exec("emacs --eval '(org-agenda-list)'") end),
+  awful.button({ }, 3, function () exec("emacs --eval '(make-remember-frame)'") end)
 ))
 -- }}}
 
@@ -332,8 +333,8 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "#51", function () if boosk then osk(nil, mouse.screen)
         else boosk, osk = pcall(require, "osk") end
     end),
-    awful.key({ modkey, "Shift"}, "p", function () exec(poweroff) end),
-    awful.key({ modkey, "Shift"}, "r", function () exec(restart) end),
+    awful.key({ modkey, "Control", "Shift"}, "p", function () exec(poweroff) end),
+    awful.key({ modkey, "Control", "Shift"}, "r", function () exec(restart) end),
     -- }}}
 
     --[[  {{{ Multimedia keys
