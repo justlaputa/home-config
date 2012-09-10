@@ -32,7 +32,7 @@ local scount = screen.count()
 
 local terminal = "gnome-terminal"
 local poweroff = "sudo poweroff"
-local restart = "sudo restart"
+local restart = "sudo reboot"
 local eclipse = home .. "/dev/eclipse/eclipse"
 local chrome = "/usr/bin/google-chrome"
 
