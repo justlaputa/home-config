@@ -93,6 +93,7 @@ vicious.register(cpugraph,  vicious.widgets.cpu,      "$1")
 vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone0")
 -- }}}
 
+--[[
 -- {{{ Battery state
 baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
@@ -101,6 +102,7 @@ batwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
 -- }}}
+--]]
 
 -- {{{ Memory usage
 memicon = widget({ type = "imagebox" })
