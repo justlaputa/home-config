@@ -580,3 +580,4 @@ size_hints_honor = false
 
 exec("gnome-keyring-daemon --daemonize --login")
 exec("gnome-session --session=ubuntu")
+exec("workrave")
