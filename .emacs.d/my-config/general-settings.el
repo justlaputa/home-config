@@ -81,4 +81,6 @@
 ;; immediatly kill buffer after "C-x k"
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
+;; 
+(global-set-key (kbd "C-;") 'whitespace-mode)
 (provide 'general-settings)
