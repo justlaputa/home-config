@@ -30,8 +30,8 @@
 
 (require 'yaml-settings)
 
+(require 'markdown-settings)
+
 ;(require 'webdevel-settings)
 
 ;(global-set-key (kbd "C-SPC") nil)
-
-(add-to-list 'auto-mode-alist '("[.]md$" . markdown-mode))
