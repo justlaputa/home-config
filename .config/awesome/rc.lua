@@ -322,6 +322,8 @@ clientbuttons = awful.util.table.join(
 -- {{{ Global keys
 globalkeys = awful.util.table.join(
     -- {{{ Applications
+    awful.key({ modkey }, "p", function () exec("shutter") end),
+    awful.key({ modkey }, "n", function () exec("nautilus") end),
     awful.key({ modkey }, "e", function () exec("emacs") end),
     awful.key({ modkey }, "s", function () exec(eclipse) end),
 --    awful.key({ modkey }, "r", function () exec("rox", false) end),
@@ -387,8 +389,8 @@ globalkeys = awful.util.table.join(
     -- }}}
 
     -- {{{ Tag browsing
-    awful.key({ modkey }, "n",   awful.tag.viewnext),
-    awful.key({ modkey }, "p",   awful.tag.viewprev),
+    -- awful.key({ modkey }, "n",   awful.tag.viewnext),
+    -- awful.key({ modkey }, "p",   awful.tag.viewprev),
     awful.key({ altkey }, "Tab", awful.tag.history.restore),
     -- }}}
 
