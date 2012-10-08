@@ -53,7 +53,7 @@ layouts = {
 
 -- {{{ Tags
 tags = {
-  names  = { "term", "emacs", "web", "dev", "vm", 6, 7, "misc", "media" },
+  names  = { "term", "emacs", "web", "dev", "eclipse", 6, 7, "misc", "media" },
   layout = { layouts[1], layouts[1], layouts[6], layouts[4], layouts[6],
              layouts[6], layouts[6], layouts[5], layouts[6]
 }}
