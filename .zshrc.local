@@ -163,7 +163,7 @@ alias -g 'pg'='ps aux | grep'
 
 ## program shortcuts
 alias -g 'pf'='sudo poweroff ; exit'
-alias -g 'r'='sudo reboot ; exit'
+alias -g 'rbt'='sudo reboot ; exit'
 ##
 
 ## git shortcuts (from oh-my-zsh)
@@ -240,6 +240,7 @@ alias ggpush='git push origin $(current_branch)'
 compdef ggpush=git
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 compdef ggpnp=git
+alias ggpushf='git push origin +$(current_branch)'
 
 ## common commands
 alias -g '...'='../..'
