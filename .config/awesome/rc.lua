@@ -511,6 +511,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Emacs",    instance = "_Remember_" },
       properties = { floating = true }, callback = awful.titlebar.add  },
+    { rule = { class = "Eclipse",  instance = "eclipse" },
+      properties = { tag = tags[scount][5] } },
     { rule = { class = "Xmessage", instance = "xmessage" },
       properties = { floating = true }, callback = awful.titlebar.add  },
     { rule = { instance = "plugin-container" },

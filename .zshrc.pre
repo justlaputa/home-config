@@ -1,8 +1,10 @@
 M2_HOME=/usr/share/maven
 JAVA_HOME=/usr/java/default
+RVM_BIN=$HOME/.rvm/bin
 
-PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+PATH=/usr/local/bin:/usr/local/sbin:$RVM_BIN:$HOME/bin:$PATH
 
 export PATH M2_HOME JAVA_HOME
 
 [[ -e $HOME/src/nvm/nvm.sh ]] && source $HOME/src/nvm/nvm.sh
+[[ -e $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

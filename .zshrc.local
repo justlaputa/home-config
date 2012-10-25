@@ -215,6 +215,7 @@ alias glp='git log -p'
 alias glga='git log --graph --all --decorate --pretty=oneline'
 
 alias glf='git log -p --follow'
+alias grpo='git remote prune origin'
 
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
