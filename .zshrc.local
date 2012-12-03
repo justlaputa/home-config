@@ -160,6 +160,7 @@ alias -g 'df'='df -hP | column -t'
 alias -g 'dh'='du -h --max-depth=1 | sort -hr'
 alias -g 'rsync'='rsync -aPvh --inplace'
 alias -g 'pg'='ps aux | grep'
+alias -g 'tm'='testem'
 
 ## program shortcuts
 alias -g 'pf'='sudo poweroff ; exit'
