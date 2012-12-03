@@ -6,9 +6,9 @@
 ;; set for all frame
 (setq default-frame-alist
       '( (background-color . "black")
-	 (foreground-color . "gray")
-	 (cursor-color . "green")
-	 (cursor-type . hbar)))
+         (foreground-color . "gray")
+         (cursor-color . "green")
+         (cursor-type . hbar)))
 
 (blink-cursor-mode 1)
 (tool-bar-mode -1)
@@ -81,6 +81,15 @@
 ;; immediatly kill buffer after "C-x k"
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
-;; 
-(global-set-key (kbd "C-;") 'whitespace-mode)
+;; white space mode
+(global-set-key (kbd "C-;") 'global-whitespace-mode)
+
+;; automatically clean up bad whitespace
+(setq whitespace-action '(auto-cleanup))
+
+;; only show bad whitespace
+(setq whitespace-style '(face trailing space-before-tab indentation empty space-after-tab))
+
+(global-whitespace-mode t)
+
 (provide 'general-settings)
