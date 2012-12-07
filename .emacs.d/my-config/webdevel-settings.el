@@ -1,5 +1,8 @@
 ;; -*- Emacs-Lisp -*-
 
+;= use html-mode for JSP files
+(add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
+
 ;= CoffeeScript mode
 (autoload 'coffee-mode "coffee-mode" "CoffeeScript mode." t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
