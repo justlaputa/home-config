@@ -32,8 +32,6 @@
 
 (require 'markdown-settings)
 
-(require 'js-settings)
-
 (require 'webdevel-settings)
 
 ;(global-set-key (kbd "C-SPC") nil)
