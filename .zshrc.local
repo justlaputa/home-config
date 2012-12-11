@@ -170,6 +170,7 @@ alias -g 'rbt'='sudo reboot ; exit'
 ## git shortcuts (from oh-my-zsh)
 alias g='git'
 compdef g=git
+alias gcl='git clone'
 alias gst='git status'
 compdef _git gst=git-status
 alias gup='git fetch && git rebase'
