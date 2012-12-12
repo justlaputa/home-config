@@ -34,4 +34,6 @@
 
 (require 'webdevel-settings)
 
+(require 'yasnippet-settings)
+
 ;(global-set-key (kbd "C-SPC") nil)
