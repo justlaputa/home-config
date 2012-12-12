@@ -36,4 +36,6 @@
 
 (require 'yasnippet-settings)
 
+(require 'auto-complete-yasnippet)
+
 ;(global-set-key (kbd "C-SPC") nil)
