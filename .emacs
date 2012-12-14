@@ -38,6 +38,8 @@
 
 (require 'auto-complete-yasnippet)
 
+(require 'move-line-region-settings)
+
 (global-unset-key (kbd "C-\\"))
 
 (global-unset-key (kbd "C-z"))
