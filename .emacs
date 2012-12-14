@@ -38,4 +38,6 @@
 
 (require 'auto-complete-yasnippet)
 
-;(global-set-key (kbd "C-SPC") nil)
+(global-unset-key (kbd "C-\\"))
+
+(global-unset-key (kbd "C-z"))
