@@ -16,6 +16,8 @@
 
 (require 'general-settings)
 
+(require 'speedbar-settings)
+
 (require 'cscope-settings)
 
 ;(require 'cedet-settings)
@@ -41,5 +43,3 @@
 (require 'move-line-region-settings)
 
 (global-unset-key (kbd "C-\\"))
-
-(global-unset-key (kbd "C-z"))
