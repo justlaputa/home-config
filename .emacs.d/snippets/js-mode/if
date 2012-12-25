@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: Han Xiao <justlaputa@gmail.com>
+# name: if (expression) { ... }
+# key: if
+# --
+if ($2) {
+    $0
+}
