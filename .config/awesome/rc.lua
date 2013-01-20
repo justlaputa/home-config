@@ -65,6 +65,8 @@ local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local chrome_cmd = "google-chrome"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
+local poweroff_cmd = "sudo poweroff"
+local reboot_cmd = "sudo reboot"
 
 -- Beautiful theme
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
