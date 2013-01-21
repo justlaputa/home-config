@@ -122,6 +122,14 @@ separator = wibox.widget.imagebox()
 separator:set_image(beautiful.widget_sep)
 -- }}}
 
+-- {{{ CPU usage
+cpuicon = wibox.widget.imagebox()
+cpuicon:set_image(beautiful.widget_cpu)
+--
+cpuwidget = wibox.widget.textbox()
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%")
+-- }}}
+
 -- {{{ Memory usage
 memicon = wibox.widget.imagebox()
 memicon:set_image(beautiful.widget_mem)
@@ -245,6 +253,9 @@ for s = 1, scount do
 
     -- Right widges
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(cpuicon)
+    right_layout:add(cpuwidget)
+    right_layout:add(separator)
     right_layout:add(memicon)
     right_layout:add(memwidget)
     right_layout:add(separator)
