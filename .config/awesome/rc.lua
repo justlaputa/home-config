@@ -136,7 +136,7 @@ netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. beautiful.fg_urgent ..'">${eth0 down_kb}</span> <span color="'
   .. beautiful.fg_normal ..'">${eth0 up_kb}</span>', 3)
-
+-- }}}
 
 
 -- {{{ System tray
