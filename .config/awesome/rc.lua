@@ -72,7 +72,7 @@ local poweroff_cmd = "sudo poweroff"
 local reboot_cmd = "sudo reboot"
 
 -- Beautiful theme
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 -- Window management layouts
 layouts = {
@@ -121,6 +121,23 @@ end
 separator = wibox.widget.imagebox()
 separator:set_image(beautiful.widget_sep)
 -- }}}
+
+-- {{{ Memory usage
+memwidget = wibox.widget.textbox()
+vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MB/$3MB)", 13)
+-- }}}
+
+-- {{{ Network usage
+dnicon = wibox.widget.imagebox()
+upicon = wibox.widget.imagebox()
+dnicon:set_image(beautiful.widget_net)
+upicon:set_image(beautiful.widget_netup)
+netwidget = wibox.widget.textbox()
+vicious.register(netwidget, vicious.widgets.net, '<span color="'
+  .. beautiful.fg_urgent ..'">${eth0 down_kb}</span> <span color="'
+  .. beautiful.fg_normal ..'">${eth0 up_kb}</span>', 3)
+
+
 
 -- {{{ System tray
 systray = wibox.widget.systray()
@@ -209,6 +226,11 @@ for s = 1, scount do
 
     -- Right widges
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(upicon)
+    right_layout:add(netwidget)
+    right_layout:add(dnicon)
+    right_layout:add(separator)
+    right_layout:add(memwidget)
     right_layout:add(separator)
     if s == 1 then right_layout:add(systray) end
 
