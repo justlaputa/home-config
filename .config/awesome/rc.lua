@@ -23,7 +23,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 -- User libraries
--- local vicious = require("vicious")
+local vicious = require("vicious")
 -- }}}
 
 -- {{{ Error handling
