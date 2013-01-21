@@ -123,6 +123,8 @@ separator:set_image(beautiful.widget_sep)
 -- }}}
 
 -- {{{ Memory usage
+memicon = wibox.widget.imagebox()
+memicon:set_image(beautiful.widget_mem)
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MB/$3MB)", 13)
 -- }}}
@@ -138,6 +140,23 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. beautiful.fg_normal ..'">${eth0 up_kb}</span>', 3)
 -- }}}
 
+-- {{{ Date and time
+dateicon = wibox.widget.imagebox()
+dateicon:set_image(beautiful.widget_date)
+-- Initialize widget
+datewidget = wibox.widget.textbox()
+-- Register widget
+vicious.register(datewidget, vicious.widgets.date, "%m/%d %a %R", 61)
+-- Register buttons
+-- }}}
+
+-- {{{ Weather widget
+weathericon = wibox.widget.imagebox()
+weathericon:set_image(beautiful.widget_sun)
+--
+weatherwidget = wibox.widget.textbox()
+vicious.register(weatherwidget, vicious.widgets.weather, "${city}:${weather}/${tempc}C", 10, "ZSSS")
+-- }}}
 
 -- {{{ System tray
 systray = wibox.widget.systray()
@@ -226,11 +245,18 @@ for s = 1, scount do
 
     -- Right widges
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(upicon)
-    right_layout:add(netwidget)
-    right_layout:add(dnicon)
-    right_layout:add(separator)
+    right_layout:add(memicon)
     right_layout:add(memwidget)
+    right_layout:add(separator)
+    right_layout:add(dnicon)
+    right_layout:add(netwidget)
+    right_layout:add(upicon)
+    right_layout:add(separator)
+    right_layout:add(weathericon)
+    right_layout:add(weatherwidget)
+    right_layout:add(separator)
+    right_layout:add(dateicon)
+    right_layout:add(datewidget)
     right_layout:add(separator)
     if s == 1 then right_layout:add(systray) end
 

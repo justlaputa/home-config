@@ -118,6 +118,7 @@ theme.widget_org    = theme.dir .. "/icons/cal.png"
 theme.widget_date   = theme.dir .. "/icons/time.png"
 theme.widget_crypto = theme.dir .. "/icons/crypto.png"
 theme.widget_sep    = theme.dir .. "/icons/separator.png"
+theme.widget_sun    = theme.dir .. "/icons/sun.png"
 -- }}}
 
 -- {{{ Titlebar
