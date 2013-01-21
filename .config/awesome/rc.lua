@@ -63,6 +63,9 @@ local scount = screen.count()
 local terminal_cmd = "gnome-terminal"
 local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
+local aurora_cmd = "firefox-aurora"
+local aurora_dev_cmd = "firefox-aurora -no-remote -P develop"
+local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local poweroff_cmd = "sudo poweroff"
@@ -231,9 +234,11 @@ globalkeys = awful.util.table.join(
     -- {{{ Program launchers
     awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
     awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
-    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
+    awful.key({ modkey,           }, "w", function () exec(aurora_cmd) end),
+    awful.key({ modkey,           }, "q", function () exec(aurora_dev_cmd) end),
     awful.key({ modkey,           }, "s", function () exec(eclipse_cmd) end),
     awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
+    awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
 
     awful.key({ modkey, "Control", "Shift"}, "p", function() exec(poweroff_cmd) end),
     awful.key({ modkey, "Control", "Shift"}, "r", function() exec(reboot_cmd) end),
@@ -264,8 +269,6 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
         end),
-
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
     -- }}}
 
     -- {{{ Awesome control
@@ -298,12 +301,6 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
