@@ -163,8 +163,7 @@ alias -g 'pg'='ps aux | grep'
 alias -g 'tm'='testem'
 
 ## program shortcuts
-alias -g 'pf'='sudo poweroff ; exit'
-alias -g 'rbt'='sudo reboot ; exit'
+alias 'pyhttp'='python2 -m SimpleHTTPServer'
 ##
 
 ## git shortcuts (from oh-my-zsh)
