@@ -162,6 +162,12 @@ alias -g 'rsync'='rsync -aPvh --inplace'
 alias -g 'pg'='ps aux | grep'
 alias -g 'tm'='testem'
 
+## pacman alias
+alias -g 'pmS'='sudo pacman -S'
+alias -g 'pmSs'='pacman -Ss'
+alias -g 'pmSyu'='sudo pacman -Syu'
+alias -g 'pmU'='sudo pacman -U'
+
 ## program shortcuts
 alias 'pyhttp'='python2 -m SimpleHTTPServer'
 ##

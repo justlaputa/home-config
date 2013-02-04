@@ -1,2 +1,11 @@
 [[ -e $HOME/src/nvm/nvm.sh ]] && source $HOME/src/nvm/nvm.sh
 [[ -e $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+if [[ -d $HOME/dev/android-sdk ]]
+then
+    PATH=$PATH:$HOME/dev/android-sdk/tools:$HOME/dev/android-sdk/platform-tools
+fi
+
+PATH=$PATH:/usr/local/heroku/bin
+
+export PATH

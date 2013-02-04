@@ -13,4 +13,6 @@
 (autoload 'jade-mode "jade-mode" "Jade template mode." t)
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+(require 'mustache-mode)
+
 (provide 'webdevel-settings)

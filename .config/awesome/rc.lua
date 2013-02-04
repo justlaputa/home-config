@@ -10,6 +10,8 @@
 -- http://git.sysphere.org/vicious/
 -- }}}
 
+local use_vicious = false
+
 -- {{{ Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -23,7 +25,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 -- User libraries
-local vicious = require("vicious")
+local vicious
+vicious = require("vicious")
 -- }}}
 
 -- {{{ Error handling
@@ -68,6 +71,7 @@ local aurora_dev_cmd = "firefox-aurora -no-remote -P develop"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
+local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local poweroff_cmd = "sudo poweroff"
 local reboot_cmd = "sudo reboot"
 
@@ -102,7 +106,7 @@ end
 -- {{{ Tags
 tags = {
   names  = { "term", "emacs", "ff", "test", "doc", "fun" },
-  layout = { layouts[6], layouts[2], layouts[10], layouts[6],
+  layout = { layouts[6], layouts[2], layouts[10], layouts[10],
              layouts[6], layouts[1]
   }
 }
@@ -148,6 +152,16 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
   .. beautiful.fg_normal ..'">${eth0 up_kb}</span>', 3)
 -- }}}
 
+--[[ This blocks awesome UI
+-- {{{ Weather widget
+weathericon = wibox.widget.imagebox()
+weathericon:set_image(beautiful.widget_sun)
+--
+weatherwidget = wibox.widget.textbox()
+vicious.register(weatherwidget, vicious.widgets.weather, "${city}:${weather}/${tempc}C", 10, "ZSSS")
+-- }}}
+--]]
+
 -- {{{ Date and time
 dateicon = wibox.widget.imagebox()
 dateicon:set_image(beautiful.widget_date)
@@ -156,14 +170,6 @@ datewidget = wibox.widget.textbox()
 -- Register widget
 vicious.register(datewidget, vicious.widgets.date, "%m/%d %a %R", 61)
 -- Register buttons
--- }}}
-
--- {{{ Weather widget
-weathericon = wibox.widget.imagebox()
-weathericon:set_image(beautiful.widget_sun)
---
-weatherwidget = wibox.widget.textbox()
-vicious.register(weatherwidget, vicious.widgets.weather, "${city}:${weather}/${tempc}C", 10, "ZSSS")
 -- }}}
 
 -- {{{ System tray
@@ -253,18 +259,15 @@ for s = 1, scount do
 
     -- Right widges
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(dnicon)
+    right_layout:add(netwidget)
+    right_layout:add(upicon)
+    right_layout:add(separator)
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
     right_layout:add(separator)
     right_layout:add(memicon)
     right_layout:add(memwidget)
-    right_layout:add(separator)
-    right_layout:add(dnicon)
-    right_layout:add(netwidget)
-    right_layout:add(upicon)
-    right_layout:add(separator)
-    right_layout:add(weathericon)
-    right_layout:add(weatherwidget)
     right_layout:add(separator)
     right_layout:add(dateicon)
     right_layout:add(datewidget)
@@ -298,6 +301,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "s", function () exec(eclipse_cmd) end),
     awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
     awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
+    awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
 
     awful.key({ modkey, "Control", "Shift"}, "p", function() exec(poweroff_cmd) end),
     awful.key({ modkey, "Control", "Shift"}, "r", function() exec(reboot_cmd) end),
