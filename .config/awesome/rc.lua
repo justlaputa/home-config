@@ -106,7 +106,7 @@ end
 -- {{{ Tags
 tags = {
   names  = { "term", "emacs", "ff", "test", "doc", "fun" },
-  layout = { layouts[6], layouts[2], layouts[10], layouts[10],
+  layout = { layouts[6], layouts[2], layouts[10], layouts[1],
              layouts[6], layouts[1]
   }
 }
