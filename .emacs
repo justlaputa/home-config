@@ -42,4 +42,6 @@
 
 (require 'move-line-region-settings)
 
+(require 'highlight-settings)
+
 (global-unset-key (kbd "C-\\"))
