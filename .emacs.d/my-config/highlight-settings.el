@@ -4,4 +4,6 @@
 
 (global-auto-highlight-symbol-mode t)
 
+(ahs-set-idle-interval 0.5)
+
 (provide 'highlight-settings)
