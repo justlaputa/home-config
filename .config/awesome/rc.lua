@@ -67,7 +67,8 @@ local terminal_cmd = "gnome-terminal"
 local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
-local aurora_dev_cmd = "firefox-aurora -no-remote -P develop"
+local firefox_nightly_cmd = "firefox-nightly"
+local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
@@ -105,9 +106,9 @@ end
 
 -- {{{ Tags
 tags = {
-  names  = { "term", "emacs", "ff", "test", "doc", "fun" },
-  layout = { layouts[6], layouts[2], layouts[10], layouts[1],
-             layouts[6], layouts[1]
+  names  = { "term", "emacs", "ff", "test", "java", "doc", "fun" },
+  layout = { layouts[6], layouts[2], layouts[10], layouts[2],
+             layouts[10], layouts[1], layouts[1]
   }
 }
 
@@ -297,7 +298,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
     awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
     awful.key({ modkey,           }, "w", function () exec(aurora_cmd) end),
-    awful.key({ modkey,           }, "q", function () exec(aurora_dev_cmd) end),
+    awful.key({ modkey,           }, "q", function () exec(firefox_dev_cmd) end),
     awful.key({ modkey,           }, "s", function () exec(eclipse_cmd) end),
     awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
     awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
@@ -331,6 +332,10 @@ globalkeys = awful.util.table.join(
             if client.focus then
                 client.focus:raise()
             end
+        end),
+    awful.key({ modkey,           }, "p",
+        function ()
+           awful.screen.focus_relative(1)
         end),
     -- }}}
 
@@ -429,10 +434,22 @@ awful.rules.rules = {
                      keys = clientkeys,
                      size_hints_honor = false,
                      buttons = clientbuttons } },
-    { rule = { class = "Firefox" },
+    { rule = { class = "Gnome-terminal" },
+      properties = { tag = tags[scount][1] } },
+    { rule = { class = "Firefox" , instance = "Navigator"},
       properties = { tag = tags[scount][3] } },
+    { rule = { class = "Firefox" , instance = "Firebug"},
+      properties = { tag = tags[scount][4] } },
     { rule = { class = "Emacs" },
-      properties = { tag = tags[scount][2], switchtotag = true } },
+      properties = { tag = tags[scount][2] } },
+    { rule = { class = "Google-chrome" },
+      properties = { tag = tags[scount][4] } },
+    { rule = { class = "Eclipse" },
+      properties = { tag = tags[scount][5] } },
+    { rule_any = { class = { "Evince", "Nautilus" } },
+      properties = { tag = tags[scount][6] } },
+    { rule_any = { class = { "Skype", "Empathy" } },
+      properties = { tag = tags[scount][7] } }
 }
 -- }}}
 
@@ -504,3 +521,6 @@ size_hints_honor = false
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+exec('workrave')
+sexec('sudo route add -net 170.225.186.55 netmask 255.255.255.255 gw 172.26.142.254 dev eth0')

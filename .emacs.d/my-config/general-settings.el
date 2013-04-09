@@ -91,5 +91,6 @@
 (setq whitespace-style '(face trailing space-before-tab indentation empty space-after-tab))
 
 (global-whitespace-mode t)
+(global-hl-line-mode 1)
 
 (provide 'general-settings)
