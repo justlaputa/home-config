@@ -1895,7 +1895,7 @@ grml_prompt_token_default=(
     host              '%m '
     jobs              '[%j running job(s)] '
     newline           $'\n'
-    path              '%40<..<%~%<< '
+    path              '%40<..<%c%<< '
     percent           '%# '
     rc                '%(?..%? )'
     rc-always         '%?'
