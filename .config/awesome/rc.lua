@@ -71,6 +71,7 @@ local firefox_nightly_cmd = "firefox-nightly"
 local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
+local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local poweroff_cmd = "sudo poweroff"
@@ -301,6 +302,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "q", function () exec(firefox_dev_cmd) end),
     awful.key({ modkey,           }, "s", function () exec(eclipse_cmd) end),
     awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
+    awful.key({ modkey, "Shift"   }, "g", function () exec(chrome_dev_cmd) end),
     awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
     awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
 
