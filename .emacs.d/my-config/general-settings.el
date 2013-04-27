@@ -78,6 +78,9 @@
 (define-key global-map (kbd "C-x M-p") 'previous-buffer)
 (define-key global-map (kbd "C-z") nil)
 
+;; auto indent when press ENTER
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
 ;; immediatly kill buffer after "C-x k"
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 

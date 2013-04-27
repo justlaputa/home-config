@@ -209,6 +209,7 @@ alias gr='git rebase'
 alias gfo='git fetch origin'
 alias gau='git add -u'
 alias gdf='git diff'
+alias gdfc='git diff --cached'
 alias glp='git log -p'
 alias glga='git log --graph --all --decorate --pretty=oneline'
 
