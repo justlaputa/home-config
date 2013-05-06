@@ -72,6 +72,7 @@ local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
 local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
+local virtualbox_cmd = "VirtualBox --startvm 'WinXP'"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local poweroff_cmd = "sudo poweroff"
@@ -299,12 +300,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
     awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
     awful.key({ modkey,           }, "w", function () exec(aurora_cmd) end),
-    awful.key({ modkey,           }, "q", function () exec(firefox_dev_cmd) end),
+    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
     awful.key({ modkey,           }, "s", function () exec(eclipse_cmd) end),
     awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
     awful.key({ modkey, "Shift"   }, "g", function () exec(chrome_dev_cmd) end),
     awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
     awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
+    awful.key({ modkey,           }, "v", function () exec(virtualbox_cmd) end),
 
     awful.key({ modkey, "Control", "Shift"}, "p", function() exec(poweroff_cmd) end),
     awful.key({ modkey, "Control", "Shift"}, "r", function() exec(reboot_cmd) end),
@@ -446,6 +448,8 @@ awful.rules.rules = {
       properties = { tag = tags[scount][2] } },
     { rule = { class = "Google-chrome" },
       properties = { tag = tags[scount][4] } },
+    { rule = { class = "VirtualBox" },
+      properties = { tag = tags[1][5] } },
     { rule = { class = "Eclipse" },
       properties = { tag = tags[scount][5] } },
     { rule_any = { class = { "Evince", "Nautilus" } },
