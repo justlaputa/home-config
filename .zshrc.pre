@@ -1,4 +1,4 @@
-[[ -e $HOME/src/nvm/nvm.sh ]] && source $HOME/src/nvm/nvm.sh
+[[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
 [[ -e $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 if [[ -d $HOME/dev/android-sdk ]]
@@ -9,3 +9,8 @@ fi
 PATH=$PATH:/usr/local/heroku/bin
 
 export PATH
+export MAVEN_OPTS="-Xmx1586m -XX:MaxPermSize=512m"
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
