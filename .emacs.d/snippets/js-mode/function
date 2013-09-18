@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: Han Xiao <justlaputa@gmail.com>
-# name: function name (param) { ... }
-# key: function
-# --
-function $1($2) {
-    $0
-}
