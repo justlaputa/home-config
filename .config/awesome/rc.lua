@@ -63,7 +63,7 @@ local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
 
-local terminal_cmd = "gnome-terminal"
+local terminal_cmd = "gnome-terminal --hide-menubar"
 local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
@@ -72,9 +72,10 @@ local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome"
 local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
-local virtualbox_cmd = "VirtualBox --startvm 'WinXP'"
+local virtualbox_cmd = "VirtualBox --startvm 'Ubuntu'"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
+local lockscreen_cmd = "gnome-screensaver-command -l"
 local poweroff_cmd = "sudo poweroff"
 local reboot_cmd = "sudo reboot"
 
@@ -109,7 +110,7 @@ end
 -- {{{ Tags
 tags = {
   names  = { "term", "emacs", "ff", "test", "java", "doc", "fun" },
-  layout = { layouts[6], layouts[2], layouts[10], layouts[2],
+  layout = { layouts[6], layouts[2], layouts[1], layouts[2],
              layouts[10], layouts[1], layouts[1]
   }
 }
@@ -151,8 +152,8 @@ dnicon:set_image(beautiful.widget_net)
 upicon:set_image(beautiful.widget_netup)
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_urgent ..'">${eth0 down_kb}</span> <span color="'
-  .. beautiful.fg_normal ..'">${eth0 up_kb}</span>', 3)
+  .. beautiful.fg_urgent ..'">${eno1 down_kb}</span> <span color="'
+  .. beautiful.fg_normal ..'">${eno1 up_kb}</span>', 3)
 -- }}}
 
 --[[ This blocks awesome UI
@@ -307,6 +308,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
     awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
     awful.key({ modkey,           }, "v", function () exec(virtualbox_cmd) end),
+    awful.key({ modkey,           }, "l", function () exec(lockscreen_cmd) end),
 
     awful.key({ modkey, "Control", "Shift"}, "p", function() exec(poweroff_cmd) end),
     awful.key({ modkey, "Control", "Shift"}, "r", function() exec(reboot_cmd) end),
@@ -529,4 +531,3 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 exec('workrave')
-sexec('sudo route add -net 170.225.186.55 netmask 255.255.255.255 gw 172.26.142.254 dev eth0')

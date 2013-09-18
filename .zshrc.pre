@@ -1,16 +1,15 @@
-[[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
-[[ -e $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
 if [[ -d $HOME/dev/android-sdk ]]
 then
     PATH=$PATH:$HOME/dev/android-sdk/tools:$HOME/dev/android-sdk/platform-tools
 fi
 
-PATH=$PATH:/usr/local/heroku/bin
+[[ -s /home/laputa/.nvm/nvm.sh ]] && . /home/laputa/.nvm/nvm.sh # This loads NVM
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export PATH
 export MAVEN_OPTS="-Xmx1586m -XX:MaxPermSize=512m"
 
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
