@@ -38,7 +38,6 @@ alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gcount='git shortlog -sn'
 alias glg='git log --stat'
-alias glgg='git log --graph --decorate --pretty=oneline'
 alias gss='git status -s'
 alias ga='git add'
 alias grh='git reset HEAD'
@@ -51,7 +50,8 @@ alias gau='git add -u'
 alias gdf='git diff'
 alias gdfc='git diff --cached'
 alias glp='git log -p'
-alias glga='git log --graph --all --decorate --pretty=oneline'
+alias glga='git log --graph --all --pretty=format:"%C(auto)%h -%d %s %C(green)(%cr) %C(bold blue)<%an>"'
+alias glgg='git log --graph --pretty=format:"%C(auto)%h -%d %s %C(green)(%cr) %C(bold blue)<%an>"'
 
 alias glf='git log -p --follow'
 alias grpo='git remote prune origin'
@@ -85,4 +85,3 @@ alias -g LL='|& less -r'
 
 ## get top 10 shell commands:
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
-
