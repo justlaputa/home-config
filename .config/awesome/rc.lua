@@ -72,7 +72,7 @@ local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nemo"
 local chrome_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
-local virtualbox_cmd = "VirtualBox --startvm 'Ubuntu'"
+local virtualbox_cmd = "VirtualBox"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local lockscreen_cmd = "gnome-screensaver-command -l"
@@ -84,18 +84,18 @@ beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 -- Window management layouts
 layouts = {
-   awful.layout.suit.floating,        --1
-   awful.layout.suit.tile,            --2
-   awful.layout.suit.tile.left,       --3
-   awful.layout.suit.tile.bottom,     --4
-   awful.layout.suit.tile.top,        --5
-   awful.layout.suit.fair,            --6
-   awful.layout.suit.fair.horizontal, --7
-   awful.layout.suit.spiral,          --8
-   awful.layout.suit.spiral.dwindle,  --9
-   awful.layout.suit.max,             --10
-   awful.layout.suit.max.fullscreen,  --11
-   awful.layout.suit.magnifier        --12
+   float        = awful.layout.suit.floating,        --1
+   title        = awful.layout.suit.tile,            --2
+   titie_left   = awful.layout.suit.tile.left,       --3
+   title_bottom = awful.layout.suit.tile.bottom,     --4
+   top          = awful.layout.suit.tile.top,        --5
+   fair         = awful.layout.suit.fair,            --6
+   fair_horiz   = awful.layout.suit.fair.horizontal, --7
+   spiral       = awful.layout.suit.spiral,          --8
+   dwindle      = awful.layout.suit.spiral.dwindle,  --9
+   max          = awful.layout.suit.max,             --10
+   fullscreen   = awful.layout.suit.max.fullscreen,  --11
+   magnifier    = awful.layout.suit.magnifier        --12
 }
 -- }}}
 
@@ -109,14 +109,22 @@ end
 
 -- {{{ Tags
 tags = {
-   names  = { "term", "emacs", "ff", "test", "java", "doc", "fun" },
-   layout = { layouts[6], layouts[2], layouts[1], layouts[2],
-              layouts[10], layouts[1], layouts[1]
+   settings = {
+      {
+         names  = { "term", "emacs", "ff", "chrome", "java", "file", "vm", "tools" },
+         layout = { layouts['dwindle'], layouts['title'], layouts['magnifier'],
+                    layouts['spiral'], layouts['max'], layouts['fair_horiz'],
+                    layouts['max'], layouts['float'] }
+      },
+      {
+         names  = { "term", "file", "tools" },
+         layout = { layouts['max'], layouts['fair_horiz'], layouts['float'] }
+      }
    }
 }
 
 for s = 1, scount do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
+   tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
    for i, t in ipairs(tags[s]) do
       awful.tag.setproperty(t, "mwfact", i==3 and 0.13  or  0.5)
    end
