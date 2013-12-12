@@ -456,7 +456,7 @@ awful.rules.rules = {
      properties = { tag = tags[scount][4] } },
    { rule = { class = "Emacs" },
      properties = { tag = tags[1][2] } },
-   { rule = { class = "Google-chrome" },
+   { rule = { class = "Google-chrome-unstable" },
      properties = { tag = tags[1][4] } },
    { rule = { class = "VirtualBox" },
      properties = { tag = tags[2][5] } },
