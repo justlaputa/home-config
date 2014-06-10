@@ -74,6 +74,7 @@ local chrome_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
 local virtualbox_cmd = "VirtualBox"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
+local intellij_cmd = "intellij-idea-13-community"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local lockscreen_cmd = "gnome-screensaver-command -l"
 local poweroff_cmd = "sudo poweroff"
@@ -113,12 +114,12 @@ tags = {
       {
          names  = { "term", "emacs", "ff", "chrome", "java", "file", "vm", "tools" },
          layout = { layouts['dwindle'], layouts['title'], layouts['magnifier'],
-                    layouts['spiral'], layouts['max'], layouts['fair_horiz'],
+                    layouts['max'], layouts['max'], layouts['fair_horiz'],
                     layouts['max'], layouts['float'] }
       },
       {
-         names  = { "term", "file", "tools" },
-         layout = { layouts['max'], layouts['fair_horiz'], layouts['float'] }
+         names  = { "term", "emacs2", "file", "tools", "www2" },
+         layout = { layouts['max'], layouts['title'], layouts['title_bottom'], layouts['float'], layouts['max'] }
       }
    }
 }
@@ -311,6 +312,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "w", function () exec(aurora_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
    awful.key({ modkey,           }, "s", function () sexec(eclipse_cmd) end),
+   awful.key({ modkey,           }, "i", function () exec(intellij_cmd) end),
    awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
    awful.key({ modkey, "Shift"   }, "g", function () exec(chrome_dev_cmd) end),
    awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
@@ -456,7 +458,12 @@ awful.rules.rules = {
      properties = { tag = tags[scount][4] } },
    { rule = { class = "Emacs" },
      properties = { tag = tags[1][2] } },
+   { rule = { class = "Emacs" , name = "Speedbar 1.0"},
+     properties = { tag = tags[1][2] , switchtotag = true,
+                    width=250 } },
    { rule = { class = "Google-chrome-unstable" },
+     properties = { tag = tags[1][4] } },
+   { rule = { class = "Google-chrome-stable" },
      properties = { tag = tags[1][4] } },
    { rule = { class = "VirtualBox" },
      properties = { tag = tags[2][5] } },
@@ -465,7 +472,9 @@ awful.rules.rules = {
    { rule_any = { class = { "Evince", "Nautilus" } },
      properties = { tag = tags[scount][6] } },
    { rule_any = { class = { "Skype", "Empathy" } },
-     properties = { tag = tags[scount][7] } }
+     properties = { tag = tags[scount][7] } },
+   { rule_any = { class = { "jetbrains-idea-ce" } },
+     properties = { tag = tags[1][5] } }
 }
 -- }}}
 
@@ -537,3 +546,6 @@ size_hints_honor = false
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+sexec("ibus-daemon -drx")
+sexec("workrave")
