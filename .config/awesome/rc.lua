@@ -69,7 +69,7 @@ local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
 local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
-local fm_cmd = "nemo"
+local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
 local virtualbox_cmd = "VirtualBox"
@@ -113,7 +113,7 @@ tags = {
    settings = {
       {
          names  = { "term", "emacs", "ff", "chrome", "java", "file", "vm", "tools" },
-         layout = { layouts['dwindle'], layouts['title'], layouts['magnifier'],
+         layout = { layouts['dwindle'], layouts['title'], layouts['max'],
                     layouts['max'], layouts['max'], layouts['fair_horiz'],
                     layouts['max'], layouts['float'] }
       },
@@ -309,7 +309,7 @@ globalkeys = awful.util.table.join(
    -- {{{ Program launchers
    awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
-   awful.key({ modkey,           }, "w", function () exec(aurora_cmd) end),
+   awful.key({ modkey,           }, "w", function () exec(firefox_nightly_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
    awful.key({ modkey,           }, "s", function () sexec(eclipse_cmd) end),
    awful.key({ modkey,           }, "i", function () exec(intellij_cmd) end),
@@ -465,8 +465,9 @@ awful.rules.rules = {
      properties = { tag = tags[1][4] } },
    { rule = { class = "Google-chrome-stable" },
      properties = { tag = tags[1][4] } },
-   { rule = { class = "VirtualBox" },
+--[[   { rule = { class = "VirtualBox" },
      properties = { tag = tags[2][5] } },
+]]--
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "Evince", "Nautilus" } },
