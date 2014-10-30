@@ -65,6 +65,7 @@ function current_branch() {
 
 alias ggpush='git push origin $(current_branch)'
 alias ggpushf='git push origin +$(current_branch)'
+alias gdo='git push origin :$(current_branch)'
 
 alias -g '...'='../..'
 alias -g '....'='../../..'

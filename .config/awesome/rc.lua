@@ -70,8 +70,9 @@ local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
 local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
 local fm_cmd = "nautilus"
-local chrome_cmd = "google-chrome-unstable"
-local chrome_dev_cmd = chrome_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome/devel\""
+local chrome_cmd = "google-chrome-stable"
+local chrome_unstable_cmd = "google-chrome-unstable"
+local chrome_dev_cmd = chrome_unstable_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome-unstable/devel\""
 local virtualbox_cmd = "VirtualBox"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local intellij_cmd = "intellij-idea-13-community"
@@ -474,7 +475,7 @@ awful.rules.rules = {
      properties = { tag = tags[scount][6] } },
    { rule_any = { class = { "Skype", "Empathy" } },
      properties = { tag = tags[scount][7] } },
-   { rule_any = { class = { "jetbrains-idea-ce" } },
+   { rule_any = { class = { "jetbrains-idea" } },
      properties = { tag = tags[1][5] } }
 }
 -- }}}
