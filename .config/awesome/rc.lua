@@ -68,7 +68,7 @@ local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
-local firefox_dev_cmd = "firefox-nightly -no-remote -P develop"
+local firefox_dev_cmd = "firefox-developer"
 local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome-stable"
 local chrome_unstable_cmd = "google-chrome-unstable"
@@ -165,16 +165,6 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
                     .. beautiful.fg_urgent ..'">${eno1 down_kb}</span> <span color="'
                     .. beautiful.fg_normal ..'">${eno1 up_kb}</span>', 3)
 -- }}}
-
---[[ This blocks awesome UI
-   -- {{{ Weather widget
-   weathericon = wibox.widget.imagebox()
-   weathericon:set_image(beautiful.widget_sun)
-   --
-   weatherwidget = wibox.widget.textbox()
-   vicious.register(weatherwidget, vicious.widgets.weather, "${city}:${weather}/${tempc}C", 10, "ZSSS")
-   -- }}}
---]]
 
 -- {{{ Date and time
 dateicon = wibox.widget.imagebox()
