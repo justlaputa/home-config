@@ -63,7 +63,8 @@ local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
 
-local terminal_cmd = "gnome-terminal --hide-menubar"
+local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
+local terminal_plain_cmd = "gnome-terminal --hide-menubar --window --profile=plain"
 local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
@@ -298,9 +299,10 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
    -- {{{ Program launchers
-   awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
+   awful.key({ modkey,           }, "Return", function () exec(terminal_tmux_cmd) end),
+   awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_plain_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
-   awful.key({ modkey,           }, "w", function () exec(firefox_nightly_cmd) end),
+   awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
    awful.key({ modkey,           }, "s", function () sexec(eclipse_cmd) end),
    awful.key({ modkey,           }, "i", function () exec(intellij_cmd) end),
@@ -541,3 +543,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 sexec("ibus-daemon -drx")
 sexec("workrave")
+sexec("xbindkeys")
