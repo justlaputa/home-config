@@ -1,0 +1,21 @@
+session_name: work
+windows:
+- window_name: home
+  panes:
+    - yaourt -Syua --noconfirm
+- window_name: hue-dev
+  layout: main-horizontal
+  options:
+    main-pane-height: 35
+  start_directory: ~/workspace/hue/company-framework
+  shell_command_before:
+    - source ~/.python2-virenv/bin/activate
+  panes:
+    - shell_command:
+        - git status
+    - 
+    - 
+- window_name: my-project
+  start_directory: ~/workspace/myproject
+  panes:
+    -
