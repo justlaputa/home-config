@@ -6,13 +6,14 @@ windows:
 - window_name: hue-dev
   layout: main-horizontal
   options:
-    main-pane-height: 35
+    main-pane-height: 37
   start_directory: ~/workspace/hue/company-framework
   shell_command_before:
     - source ~/.python2-virenv/bin/activate
   panes:
     - shell_command:
         - git status
+      focus: true
     - 
     - 
 - window_name: my-project
