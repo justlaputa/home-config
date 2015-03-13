@@ -1,0 +1,16 @@
+session_name: gitlab-dev
+start_directory: ~/workspace/oss/gitlab-development-kit
+windows:
+- window_name: pq-redis
+  panes:
+    - bundle exec foreman start
+- window_name: gitlab
+  layout: main-horizontal
+  panes:
+    - shell_command:
+      - cd gitlab
+      - bundle exec foreman start
+- window_name: develop
+  focus: true
+  panes:
+    - git status
