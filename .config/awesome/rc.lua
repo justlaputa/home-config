@@ -63,9 +63,14 @@ local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
 
+-- Editors
+local emacs_cmd = "emacs"
+local subl_cmd = "subl3"
+local eclipse_cmd = home .. "/dev/eclipse/eclipse"
+local intellij_cmd = "intellij-idea-13-community"
+
 local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
 local terminal_plain_cmd = "gnome-terminal --hide-menubar --window --profile=plain"
-local emacs_cmd = "emacs"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
@@ -75,8 +80,6 @@ local chrome_cmd = "google-chrome-stable"
 local chrome_unstable_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_unstable_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome-unstable/devel\""
 local virtualbox_cmd = "VirtualBox"
-local eclipse_cmd = home .. "/dev/eclipse/eclipse"
-local intellij_cmd = "intellij-idea-13-community"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local lockscreen_cmd = "gnome-screensaver-command -l"
 local poweroff_cmd = "sudo poweroff"
@@ -114,14 +117,14 @@ end
 tags = {
    settings = {
       {
-         names  = { "term", "emacs", "ff", "chrome", "java", "file", "vm", "tools" },
-         layout = { layouts['dwindle'], layouts['title'], layouts['max'],
-                    layouts['max'], layouts['max'], layouts['fair_horiz'],
-                    layouts['max'], layouts['float'] }
+         names  = { "term", "editor", "ff", "chrome", "ssh1", "ssh2", "editor2", "free" },
+         layout = { layouts['dwindle'], layouts['max'], layouts['max'],
+                    layouts['float'], layouts['float'], layouts['float'],
+                    layouts['float'], layouts['float'] }
       },
       {
-         names  = { "term", "emacs2", "file", "tools", "www2" },
-         layout = { layouts['max'], layouts['title'], layouts['title_bottom'], layouts['float'], layouts['max'] }
+         names  = { "term", "www", "file" },
+         layout = { layouts['max'], layouts['float'], layouts['float'] }
       }
    }
 }
@@ -304,7 +307,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
-   awful.key({ modkey,           }, "s", function () sexec(eclipse_cmd) end),
+   awful.key({ modkey,           }, "s", function () sexec(subl_cmd) end),
    awful.key({ modkey,           }, "i", function () exec(intellij_cmd) end),
    awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
    awful.key({ modkey, "Shift"   }, "g", function () exec(chrome_dev_cmd) end),
@@ -443,32 +446,31 @@ awful.rules.rules = {
                     keys = clientkeys,
                     size_hints_honor = false,
                     buttons = clientbuttons } },
-   { rule = { class = "Gnome-terminal" },
-     properties = { tag = tags[1][1] } },
+   -- { rule = { class = "Gnome-terminal" },
+   --   properties = { tag = tags[1][1] } },
    { rule = { class = "Firefox" , instance = "Navigator"},
      properties = { tag = tags[1][3] } },
    { rule = { class = "Firefox" , instance = "Firebug"},
-     properties = { tag = tags[scount][4] } },
+     properties = { tag = tags[scount][2] } },
    { rule = { class = "Emacs" },
      properties = { tag = tags[1][2] } },
    { rule = { class = "Emacs" , name = "Speedbar 1.0"},
      properties = { tag = tags[1][2] , switchtotag = true,
                     width=250 } },
+   { rule = { class = "Subl3" },
+     properties = { tag = tags[1][2] } },
    { rule = { class = "Google-chrome-unstable" },
-     properties = { tag = tags[1][4] } },
+     properties = { tag = tags[scount][2] } },
    { rule = { class = "Google-chrome-stable" },
      properties = { tag = tags[1][4] } },
---[[   { rule = { class = "VirtualBox" },
-     properties = { tag = tags[2][5] } },
-]]--
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
-   { rule_any = { class = { "Evince", "Nautilus" } },
-     properties = { tag = tags[scount][6] } },
+   -- { rule_any = { class = { "Evince", "Nautilus" } },
+   --   properties = { tag = tags[2][3] } },
    { rule_any = { class = { "Skype", "Empathy" } },
-     properties = { tag = tags[scount][7] } },
+     properties = { tag = tags[1][8] } },
    { rule_any = { class = { "jetbrains-idea" } },
-     properties = { tag = tags[1][5] } }
+     properties = { tag = tags[1][7] } }
 }
 -- }}}
 
