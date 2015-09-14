@@ -90,18 +90,18 @@ beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
 
 -- Window management layouts
 layouts = {
-   float        = awful.layout.suit.floating,        --1
-   title        = awful.layout.suit.tile,            --2
-   titie_left   = awful.layout.suit.tile.left,       --3
-   title_bottom = awful.layout.suit.tile.bottom,     --4
-   top          = awful.layout.suit.tile.top,        --5
-   fair         = awful.layout.suit.fair,            --6
-   fair_horiz   = awful.layout.suit.fair.horizontal, --7
-   spiral       = awful.layout.suit.spiral,          --8
-   dwindle      = awful.layout.suit.spiral.dwindle,  --9
-   max          = awful.layout.suit.max,             --10
-   fullscreen   = awful.layout.suit.max.fullscreen,  --11
-   magnifier    = awful.layout.suit.magnifier        --12
+  awful.layout.suit.floating,        --1 float
+  awful.layout.suit.tile,            --2 title
+  awful.layout.suit.tile.left,       --3 titie_left
+  awful.layout.suit.tile.bottom,     --4 title_bottom
+  awful.layout.suit.tile.top,        --5 top
+  awful.layout.suit.fair,            --6 fair
+  awful.layout.suit.fair.horizontal, --7 fair_horiz
+  awful.layout.suit.spiral,          --8 spiral
+  awful.layout.suit.spiral.dwindle,  --9 dwindle
+  awful.layout.suit.max,             --10 max
+  awful.layout.suit.max.fullscreen,  --11 fullscreen
+  awful.layout.suit.magnifier        --12 magnifier
 }
 -- }}}
 
@@ -118,13 +118,13 @@ tags = {
    settings = {
       {
          names  = { "term", "editor", "ff", "chrome", "ssh1", "ssh2", "editor2", "free" },
-         layout = { layouts['dwindle'], layouts['max'], layouts['max'],
-                    layouts['float'], layouts['float'], layouts['float'],
-                    layouts['float'], layouts['float'] }
+         layout = { layouts[9], layouts[10], layouts[10],
+                    layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1] }
       },
       {
          names  = { "term", "www", "file" },
-         layout = { layouts['max'], layouts['float'], layouts['float'] }
+         layout = { layouts[10], layouts[1], layouts[1] }
       }
    }
 }
