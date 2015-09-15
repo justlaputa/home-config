@@ -27,6 +27,8 @@ local menubar = require("menubar")
 -- User libraries
 local vicious
 vicious = require("vicious")
+vicious.contrib = require("vicious.contrib")
+
 -- }}}
 
 -- {{{ Error handling
@@ -180,6 +182,57 @@ vicious.register(datewidget, vicious.widgets.date, "%m/%d %a %R", 61)
 -- Register buttons
 -- }}}
 
+--{{{ Pulseaudio
+local pulseicon = wibox.widget.imagebox()
+pulseicon:set_image(beautiful.widget_vol)
+-- Initialize widgets
+local pulsewidget = wibox.widget.textbox()
+local pulsebar    = awful.widget.progressbar()
+local pulsebox    = wibox.layout.margin(pulsebar, 3, 1, 1, 1)
+
+-- Progressbar properties
+pulsebar:set_width(8)
+pulsebar:set_height(12)
+pulsebar:set_ticks(true)
+pulsebar:set_ticks_size(2)
+pulsebar:set_vertical(true)
+pulsebar:set_background_color(beautiful.fg_off_widget)
+pulsebar:set_color(beautiful.fg_widget)
+-- Bar from green to red
+pulsebar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 30 },
+     stops = { { 0, "#AECF96" }, { 1, "#FF5656" } } })
+
+-- Enable caching
+vicious.cache(vicious.contrib.pulse)
+
+local audio_card = "alsa_output.pci-0000_00_1b.0.analog-stereo"
+
+local function pulse_volume(delta)
+  vicious.contrib.pulse.add(delta, audio_card)
+  vicious.force({ pulsewidget, pulsebar})
+end
+
+local function pulse_toggle()
+  vicious.contrib.pulse.toggle(audio_card)
+  vicious.force({ pulsewidget, pulsebar})
+end
+
+vicious.register(pulsebar, vicious.contrib.pulse, "$1", 20, audio_card)
+vicious.register(pulsewidget, vicious.contrib.pulse,
+function (widget, args)
+  print('widget vol: '..args[1])
+  return string.format("%.f%%", args[1])
+end, 20, audio_card)
+
+pulsewidget:buttons(awful.util.table.join(
+  awful.button({ }, 1, function() pulse_toggle() end),
+  awful.button({ }, 4, function() pulse_volume(5) end), -- scroll up
+  awful.button({ }, 5, function() pulse_volume(-5) end))) -- scroll down
+
+pulsebar:buttons(pulsewidget:buttons())
+pulseicon:buttons(pulsewidget:buttons())
+--}}}
+
 -- {{{ System tray
 systray = wibox.widget.systray()
 -- }}}
@@ -276,6 +329,10 @@ for s = 1, scount do
    right_layout:add(separator)
    right_layout:add(memicon)
    right_layout:add(memwidget)
+   right_layout:add(separator)
+   right_layout:add(pulseicon)
+   right_layout:add(pulsewidget)
+   right_layout:add(pulsebox)
    right_layout:add(separator)
    right_layout:add(dateicon)
    right_layout:add(datewidget)
