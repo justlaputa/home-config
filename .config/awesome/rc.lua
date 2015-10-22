@@ -119,10 +119,10 @@ end
 tags = {
    settings = {
       {
-         names  = { "term", "editor", "ff", "chrome", "ssh1", "ssh2", "editor2", "free" },
+         names  = { "term", "editor", "ff", "chrome", "ssh1", "ssh2", "editor2", "files", "hide" },
          layout = { layouts[9], layouts[10], layouts[10],
                     layouts[1], layouts[1], layouts[1],
-                    layouts[1], layouts[1] }
+                    layouts[1], layouts[1], layouts[1] }
       },
       {
          names  = { "term", "www", "file" },
@@ -135,6 +135,7 @@ for s = 1, scount do
    tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
    for i, t in ipairs(tags[s]) do
       awful.tag.setproperty(t, "mwfact", i==3 and 0.13  or  0.5)
+      awful.tag.setproperty(t, "hide", (i == 9) and true)
    end
 end
 -- }}}
