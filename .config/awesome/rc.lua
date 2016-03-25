@@ -71,6 +71,7 @@ local subl_cmd = "subl3"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local intellij_cmd = "intellij-idea-13-community"
 
+local terminal_cmd = "terminator"
 local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
 local terminal_plain_cmd = "gnome-terminal --hide-menubar --window --profile=plain"
 local firefox_cmd = "firefox"
@@ -119,14 +120,14 @@ end
 tags = {
    settings = {
       {
-         names  = { "term", "editor", "ff", "chrome", "ssh1", "ssh2", "editor2", "files", "hide" },
-         layout = { layouts[9], layouts[10], layouts[10],
+         names  = { "term", "editor", "editor2", "web", "ide", "ide2", "files", "vm", "hide" },
+         layout = { layouts[9], layouts[3], layouts[10],
                     layouts[1], layouts[1], layouts[1],
-                    layouts[1], layouts[1], layouts[1] }
+                    layouts[1], layouts[1] }
       },
       {
-         names  = { "term", "www", "file" },
-         layout = { layouts[10], layouts[1], layouts[1] }
+         names  = { "term", "web", "file", "free" },
+         layout = { layouts[10], layouts[1], layouts[1], layouts[1] }
       }
    }
 }
@@ -360,7 +361,7 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
    -- {{{ Program launchers
-   awful.key({ modkey,           }, "Return", function () exec(terminal_tmux_cmd) end),
+   awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
    awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_plain_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
@@ -504,8 +505,8 @@ awful.rules.rules = {
                     keys = clientkeys,
                     size_hints_honor = false,
                     buttons = clientbuttons } },
-   -- { rule = { class = "Gnome-terminal" },
-   --   properties = { tag = tags[1][1] } },
+   { rule = { class = "Terminator" },
+     properties = { tag = tags[1][1] } },
    { rule = { class = "Firefox" , instance = "Navigator"},
      properties = { tag = tags[1][3] } },
    { rule = { class = "Firefox" , instance = "Firebug"},
@@ -517,18 +518,16 @@ awful.rules.rules = {
                     width=250 } },
    { rule = { class = "Subl3" },
      properties = { tag = tags[1][2] } },
-   { rule = { class = "Google-chrome-unstable" },
+   { rule = { class = "google-chrome-unstable" },
      properties = { tag = tags[scount][2] } },
-   { rule = { class = "Google-chrome-stable" },
-     properties = { tag = tags[1][4] } },
+   { rule = { class = "google-chrome" },
+     properties = { tag = tags[1][3] } },
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
-   -- { rule_any = { class = { "Evince", "Nautilus" } },
-   --   properties = { tag = tags[2][3] } },
-   { rule_any = { class = { "Skype", "Empathy" } },
-     properties = { tag = tags[1][8] } },
    { rule_any = { class = { "jetbrains-idea" } },
-     properties = { tag = tags[1][7] } }
+     properties = { tag = tags[1][5] } },
+   { rule_any = { class = { "Atom" } },
+     properties = { tag = tags[1][5] } }
 }
 -- }}}
 
@@ -601,6 +600,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-sexec("ibus-daemon -drx")
 sexec("workrave")
-sexec("xbindkeys")
+sexec("rescuetime")
