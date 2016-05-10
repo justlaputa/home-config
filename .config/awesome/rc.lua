@@ -82,11 +82,13 @@ local fm_cmd = "nautilus"
 local chrome_cmd = "google-chrome-stable"
 local chrome_unstable_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_unstable_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome-unstable/devel\""
-local virtualbox_cmd = "VirtualBox"
+local startvm_cmd = "VBoxManage startvm 'Windows'"
 local android_cmd = home .. "/dev/android-sdk/tools/android avd"
 local lockscreen_cmd = "gnome-screensaver-command -l"
 local poweroff_cmd = "sudo poweroff"
 local reboot_cmd = "sudo reboot"
+local screenshot_cmd = "scrot -e 'mv $f ~/Pictures/screenshots/'"
+local screenshot_select_cmd = "scrot -s -e 'mv $f ~/Pictures/screenshots/'"
 
 -- Beautiful theme
 beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
@@ -374,6 +376,8 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
    awful.key({ modkey,           }, "v", function () exec(virtualbox_cmd) end),
    awful.key({ modkey,           }, "l", function () exec(lockscreen_cmd) end),
+   awful.key({               }, "Print", function () exec(screenshot_cmd) end),
+   awful.key({ modkey, "Shift"   }, "s", function () sexec(screenshot_select_cmd) end),
 
    awful.key({ modkey, "Control", "Shift"}, "p", function() exec(poweroff_cmd) end),
    awful.key({ modkey, "Control", "Shift"}, "r", function() exec(reboot_cmd) end),
@@ -521,7 +525,7 @@ awful.rules.rules = {
    { rule = { class = "google-chrome-unstable" },
      properties = { tag = tags[scount][2] } },
    { rule = { class = "google-chrome" },
-     properties = { tag = tags[1][3] } },
+     properties = { tag = tags[1][4] } },
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "jetbrains-idea" } },
