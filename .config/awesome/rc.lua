@@ -374,7 +374,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Shift"   }, "g", function () exec(chrome_dev_cmd) end),
    awful.key({ modkey,           }, "n", function () exec(fm_cmd) end),
    awful.key({ modkey,           }, "a", function () exec(android_cmd) end),
-   awful.key({ modkey,           }, "v", function () exec(virtualbox_cmd) end),
+   awful.key({ modkey,           }, "v", function () exec(startvm_cmd) end),
    awful.key({ modkey,           }, "l", function () exec(lockscreen_cmd) end),
    awful.key({               }, "Print", function () exec(screenshot_cmd) end),
    awful.key({ modkey, "Shift"   }, "s", function () sexec(screenshot_select_cmd) end),
