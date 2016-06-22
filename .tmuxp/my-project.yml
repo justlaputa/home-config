@@ -19,6 +19,6 @@ windows:
     - gulp server
     - gulp build
 - window_name: home
-  start_directory: ~
+  start_directory: ~/
   panes:
     - ls
