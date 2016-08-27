@@ -29,6 +29,7 @@ local vicious
 vicious = require("vicious")
 vicious.contrib = require("vicious.contrib")
 
+local iwlist = require("utils.iwlist")
 -- }}}
 
 -- {{{ Error handling
@@ -71,7 +72,7 @@ local subl_cmd = "subl3"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local intellij_cmd = "intellij-idea-13-community"
 
-local terminal_cmd = "terminator"
+local terminal_cmd = "gnome-terminal --hide-menubar --window"
 local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
 local terminal_plain_cmd = "gnome-terminal --hide-menubar --window --profile=plain"
 local firefox_cmd = "firefox"
@@ -237,6 +238,49 @@ pulsebar:buttons(pulsewidget:buttons())
 pulseicon:buttons(pulsewidget:buttons())
 --}}}
 
+--{{{ Wifi
+local wifiwidget = wibox.widget.textbox()
+local wifiicon   = wibox.widget.imagebox()
+local wifitooltip= awful.tooltip({})
+wifitooltip:add_to_object(wifiwidget)
+wifiicon:set_image(beautiful.widget_wifi)
+vicious.register(wifiwidget, vicious.widgets.wifi,
+  function(widget, args)
+     local tooltip = ("<b>mode</b> %s <b>chan</b> %s <b>rate</b> %s Mb/s"):format(
+                args["{mode}"], args["{chan}"], args["{rate}"])
+     local quality = 0
+     if args["{linp}"] > 0 then
+        quality = args["{link}"] / args["{linp}"] * 100
+     end
+     wifitooltip:set_markup(tooltip)
+     return ("%s: %.1f%%"):format(args["{ssid}"], quality)
+  end, 5, "wlp1s0")
+
+wifiicon:buttons( wifiwidget:buttons(awful.util.table.join(
+awful.button({}, 1, function()
+local networks = iwlist.scan_networks("wlp1s0")
+if #networks > 0 then
+  local msg = {}
+  for i, ap in ipairs(networks) do
+    local line = "<b>ESSID:</b> %s <b>MAC:</b> %s <b>Qual.:</b> %.2f%% <b>%s</b>"
+    local enc = iwlist.get_encryption(ap)
+    msg[i] = line:format(ap.essid, ap.address, ap.quality, enc)
+  end
+  naughty.notify({text = table.concat(msg, "\n")})
+else
+end
+end),
+awful.button({ "Shift" }, 1, function ()
+-- restart-auto-wireless is just a script of mine,
+-- which just restart netcfg
+local wpa_cmd = "sudo restart-auto-wireless && notify-send 'wpa_actiond' 'restarted' || notify-send 'wpa_actiond' 'error on restart'"
+awful.util.spawn_with_shell(wpa_cmd)
+end), -- left click
+awful.button({ }, 3, function ()  vicious.force{wifiwidget} end) -- right click
+)))
+--}}}
+
+
 -- {{{ System tray
 systray = wibox.widget.systray()
 -- }}}
@@ -328,6 +372,9 @@ for s = 1, scount do
    right_layout:add(netwidget)
    right_layout:add(upicon)
    right_layout:add(separator)
+   right_layout:add(wifiicon)
+   right_layout:add(wifiwidget)
+   right_layout:add(separator)   
    right_layout:add(cpuicon)
    right_layout:add(cpuwidget)
    right_layout:add(separator)
@@ -604,5 +651,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-sexec("workrave")
-sexec("rescuetime")
+--sexec("workrave")
+--sexec("rescuetime")
