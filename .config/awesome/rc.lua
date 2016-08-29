@@ -129,7 +129,7 @@ tags = {
                     layouts[1], layouts[1] }
       },
       {
-         names  = { "term", "web", "file", "free" },
+         names  = { "term", "web", "file", "doc" },
          layout = { layouts[10], layouts[1], layouts[1], layouts[1] }
       }
    }
@@ -372,9 +372,9 @@ for s = 1, scount do
    right_layout:add(netwidget)
    right_layout:add(upicon)
    right_layout:add(separator)
-   right_layout:add(wifiicon)
-   right_layout:add(wifiwidget)
-   right_layout:add(separator)   
+--   right_layout:add(wifiicon)
+--   right_layout:add(wifiwidget)
+--   right_layout:add(separator)
    right_layout:add(cpuicon)
    right_layout:add(cpuwidget)
    right_layout:add(separator)
@@ -578,7 +578,11 @@ awful.rules.rules = {
    { rule_any = { class = { "jetbrains-idea" } },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "Atom" } },
-     properties = { tag = tags[1][5] } }
+     properties = { tag = tags[1][5] } },
+   { rule_any = { class = { "VirtualBox" } },
+     properties = { tag = tags[1][8] } },
+   { rule_any = { class = { "libreoffice" } },
+     properties = { tag = tags[2][4] } }
 }
 -- }}}
 
