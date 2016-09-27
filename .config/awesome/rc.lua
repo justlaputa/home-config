@@ -80,7 +80,7 @@ local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
 local firefox_dev_cmd = "firefox-developer"
 local fm_cmd = "nautilus"
-local chrome_cmd = "google-chrome-stable"
+local chrome_cmd = "google-chrome-stable --disable-background-mode --disable-translate --purge-memory-button --password-store=basic"
 local chrome_unstable_cmd = "google-chrome-unstable"
 local chrome_dev_cmd = chrome_unstable_cmd .. " --user-data-dir=\"" .. home .. "/.config/google-chrome-unstable/devel\""
 local startvm_cmd = "VBoxManage startvm 'Windows'"
@@ -123,14 +123,20 @@ end
 tags = {
    settings = {
       {
-         names  = { "term", "editor", "editor2", "web", "ide", "ide2", "files", "vm", "hide" },
+         names  = { "term", "editor", "editor2",
+                    "web", "web2", "ide",
+                    "ide2", "files", "vm",
+                    "hide" },
          layout = { layouts[9], layouts[3], layouts[10],
+                    layouts[1], layouts[7], layouts[1],
                     layouts[1], layouts[1], layouts[1],
-                    layouts[1], layouts[1] }
+                    layouts[1] }
       },
       {
-         names  = { "term", "web", "file", "doc" },
-         layout = { layouts[10], layouts[1], layouts[1], layouts[1] }
+         names  = { "term", "web", "web2",
+                    "file", "doc" },
+         layout = { layouts[10], layouts[1], layouts[7],
+                    layouts[1], layouts[1] }
       }
    }
 }
@@ -576,7 +582,7 @@ awful.rules.rules = {
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "jetbrains-idea" } },
-     properties = { tag = tags[1][5] } },
+     properties = { tag = tags[1][6] } },
    { rule_any = { class = { "Atom" } },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "VirtualBox" } },
