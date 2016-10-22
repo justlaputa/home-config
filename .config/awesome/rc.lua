@@ -588,7 +588,7 @@ awful.rules.rules = {
    { rule_any = { class = { "VirtualBox" } },
      properties = { tag = tags[1][8] } },
    { rule_any = { class = { "libreoffice" } },
-     properties = { tag = tags[2][4] } }
+     properties = { tag = tags[1][4] } }
 }
 -- }}}
 
@@ -661,6 +661,6 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-sexec("workrave"
+sexec("workrave")
 sexec("nm-applet")
 sexec("rescuetime")
