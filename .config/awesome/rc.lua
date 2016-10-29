@@ -127,7 +127,7 @@ tags = {
                     "web", "web2", "ide",
                     "ide2", "files", "vm",
                     "hide" },
-         layout = { layouts[9], layouts[3], layouts[10],
+         layout = { layouts[9], layouts[2], layouts[10],
                     layouts[1], layouts[7], layouts[1],
                     layouts[1], layouts[1], layouts[1],
                     layouts[1] }
@@ -144,7 +144,7 @@ tags = {
 for s = 1, scount do
    tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
    for i, t in ipairs(tags[s]) do
-      awful.tag.setproperty(t, "mwfact", i==3 and 0.13  or  0.5)
+      awful.tag.setproperty(t, "mwfact", s ==1 and i==2 and 0.13  or  0.5)
       awful.tag.setproperty(t, "hide", (i == 9) and true)
    end
 end
@@ -570,14 +570,11 @@ awful.rules.rules = {
      properties = { tag = tags[scount][2] } },
    { rule = { class = "Emacs" },
      properties = { tag = tags[1][2] } },
-   { rule = { class = "Emacs" , name = "Speedbar 1.0"},
-     properties = { tag = tags[1][2] , switchtotag = true,
-                    width=250 } },
    { rule = { class = "Subl3" },
      properties = { tag = tags[1][2] } },
    { rule = { class = "google-chrome-unstable" },
      properties = { tag = tags[scount][2] } },
-   { rule = { class = "google-chrome" },
+   { rule = { class = "Google-chrome" },
      properties = { tag = tags[1][4] } },
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
