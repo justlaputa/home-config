@@ -128,7 +128,7 @@ tags = {
                     "ide2", "files", "vm",
                     "hide" },
          layout = { layouts[9], layouts[2], layouts[10],
-                    layouts[1], layouts[7], layouts[1],
+                    layouts[1], layouts[3], layouts[1],
                     layouts[1], layouts[1], layouts[1],
                     layouts[1] }
       },
