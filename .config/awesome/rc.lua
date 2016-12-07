@@ -74,7 +74,7 @@ local intellij_cmd = "intellij-idea-13-community"
 
 local terminal_cmd = "gnome-terminal --hide-menubar --window"
 local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
-local terminal_plain_cmd = "gnome-terminal --hide-menubar --window --profile=plain"
+local terminal_tiny_cmd = "gnome-terminal --hide-menubar --window --profile=tmux-tiny-font"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
@@ -417,7 +417,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
    -- {{{ Program launchers
    awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
-   awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_plain_cmd) end),
+   awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_tiny_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
@@ -562,8 +562,6 @@ awful.rules.rules = {
                     keys = clientkeys,
                     size_hints_honor = false,
                     buttons = clientbuttons } },
-   { rule = { class = "Terminator" },
-     properties = { tag = tags[1][1] } },
    { rule = { class = "Firefox" , instance = "Navigator"},
      properties = { tag = tags[1][3] } },
    { rule = { class = "Firefox" , instance = "Firebug"},
@@ -572,7 +570,7 @@ awful.rules.rules = {
      properties = { tag = tags[1][2] } },
    { rule = { class = "Subl3" },
      properties = { tag = tags[1][2] } },
-   { rule = { class = "google-chrome-unstable" },
+   { rule = { class = "Google-chrome-unstable" },
      properties = { tag = tags[scount][2] } },
    { rule = { class = "Google-chrome" },
      properties = { tag = tags[1][4] } },
