@@ -72,9 +72,8 @@ local subl_cmd = "subl3"
 local eclipse_cmd = home .. "/dev/eclipse/eclipse"
 local intellij_cmd = "intellij-idea-13-community"
 
-local terminal_cmd = "gnome-terminal --hide-menubar --window"
+local terminal_default_cmd = "gnome-terminal --hide-menubar --window --profile=default"
 local terminal_tmux_cmd = "gnome-terminal --hide-menubar --window --profile=tmux"
-local terminal_tiny_cmd = "gnome-terminal --hide-menubar --window --profile=tmux-tiny-font"
 local firefox_cmd = "firefox"
 local aurora_cmd = "firefox-aurora"
 local firefox_nightly_cmd = "firefox-nightly"
@@ -134,9 +133,9 @@ tags = {
       },
       {
          names  = { "term", "web", "web2",
-                    "file", "doc" },
-         layout = { layouts[10], layouts[1], layouts[7],
-                    layouts[1], layouts[1] }
+                    "atom", "free" },
+         layout = { layouts[10], layouts[3], layouts[7],
+                    layouts[10], layouts[1] }
       }
    }
 }
@@ -416,8 +415,8 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
    -- {{{ Program launchers
-   awful.key({ modkey,           }, "Return", function () exec(terminal_cmd) end),
-   awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_tiny_cmd) end),
+   awful.key({ modkey,           }, "Return", function () exec(terminal_tmux_cmd) end),
+   awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_default_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
    awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
@@ -574,12 +573,14 @@ awful.rules.rules = {
      properties = { tag = tags[scount][2] } },
    { rule = { class = "Google-chrome" },
      properties = { tag = tags[1][4] } },
+   { rule = { name = "Tabs Outliner" },
+     properties = { tag = tags[2][2] } },
    { rule = { class = "Eclipse" },
      properties = { tag = tags[1][5] } },
    { rule_any = { class = { "jetbrains-idea" } },
      properties = { tag = tags[1][6] } },
    { rule_any = { class = { "Atom" } },
-     properties = { tag = tags[1][5] } },
+     properties = { tag = tags[2][4] } },
    { rule_any = { class = { "VirtualBox" } },
      properties = { tag = tags[1][8] } },
    { rule_any = { class = { "libreoffice" } },
