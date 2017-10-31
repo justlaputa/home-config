@@ -122,20 +122,17 @@ end
 tags = {
    settings = {
       {
-         names  = { "term", "editor", "editor2",
-                    "web", "web2", "ide",
-                    "ide2", "files", "vm",
-                    "hide" },
-         layout = { layouts[9], layouts[2], layouts[10],
-                    layouts[1], layouts[3], layouts[1],
+         names  = { "term", "emacs", "ide",
+                    "web", "web2", "files",
+                    "free", "", "" },
+         layout = { layouts[9], layouts[2], layouts[1],
                     layouts[1], layouts[1], layouts[1],
-                    layouts[1] }
+                    layouts[1], layouts[1], layouts[1] }
       },
       {
-         names  = { "term", "web", "web2",
-                    "atom", "free" },
-         layout = { layouts[10], layouts[3], layouts[7],
-                    layouts[10], layouts[1] }
+         names  = { "term", "prod", "editor", "web", "free"},
+         layout = { layouts[10], layouts[3], layouts[1],
+                    layouts[1], layouts[1] }
       }
    }
 }
@@ -419,7 +416,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Shift"   }, "Return", function () exec(terminal_default_cmd) end),
    awful.key({ modkey,           }, "e", function () exec(emacs_cmd) end),
    awful.key({ modkey,           }, "w", function () exec(firefox_cmd) end),
-   awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_dev_cmd) end),
+   awful.key({ modkey, "Shift"   }, "w", function () exec(firefox_nightly_cmd) end),
    awful.key({ modkey,           }, "s", function () sexec(subl_cmd) end),
    awful.key({ modkey,           }, "i", function () exec(intellij_cmd) end),
    awful.key({ modkey,           }, "g", function () exec(chrome_cmd) end),
@@ -562,7 +559,7 @@ awful.rules.rules = {
                     size_hints_honor = false,
                     buttons = clientbuttons } },
    { rule = { class = "Firefox" , instance = "Navigator"},
-     properties = { tag = tags[1][3] } },
+     properties = { tag = tags[1][5] } },
    { rule = { class = "Firefox" , instance = "Firebug"},
      properties = { tag = tags[scount][2] } },
    { rule = { class = "Emacs" },
@@ -570,7 +567,7 @@ awful.rules.rules = {
    { rule = { class = "Subl3" },
      properties = { tag = tags[1][2] } },
    { rule = { class = "Google-chrome-unstable" },
-     properties = { tag = tags[scount][2] } },
+     properties = { tag = tags[scount][4] } },
    { rule = { class = "Google-chrome" },
      properties = { tag = tags[1][4] } },
    { rule = { name = "Tabs Outliner" },
@@ -583,8 +580,6 @@ awful.rules.rules = {
      properties = { tag = tags[2][4] } },
    { rule_any = { class = { "VirtualBox" } },
      properties = { tag = tags[1][8] } },
-   { rule_any = { class = { "libreoffice" } },
-     properties = { tag = tags[1][4] } }
 }
 -- }}}
 
