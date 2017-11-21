@@ -560,6 +560,8 @@ awful.rules.rules = {
                     buttons = clientbuttons } },
    { rule = { class = "Firefox" , instance = "Navigator"},
      properties = { tag = tags[1][5] } },
+   { rule = { class = "Nightly" , instance = "Navigator"},
+     properties = { tag = tags[1][5] } },
    { rule = { class = "Emacs" },
      properties = { tag = tags[1][2] } },
    { rule = { class = "Subl3" },
